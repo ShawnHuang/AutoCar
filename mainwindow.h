@@ -6,7 +6,6 @@
 #include <QEvent>
 #include <QGridLayout>
 
-
 namespace Ui {
 class MainWindow;
 }
@@ -24,7 +23,6 @@ protected:
 
 private:
     Ui::MainWindow *ui;
-
 
 };
 

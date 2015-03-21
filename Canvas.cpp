@@ -23,6 +23,8 @@ void Canvas::init()
     start = QPoint(60 + offset, canvasHeight - 0 - offset);
     end = QPoint(300 + offset, canvasHeight - 370 - offset);
     curPosition= QPoint(60 + offset, canvasHeight - 0 - offset);
+    curDegree = 90;
+
 
     points[0] = QPoint(0 + offset, canvasHeight - 0 - offset);
     points[1] = QPoint(0 + offset, canvasHeight - 220 - offset);
@@ -65,10 +67,48 @@ void Canvas::drawPoint(QPainter *p)
 void Canvas::drawCar(QPainter *p)
 {
     p->begin(this);
-    p->setPen(QPen(Qt::blue, 3));
+    p->setPen(QPen(Qt::blue, 1));
+//    p->drawRect(QRectF(0, 0, 100, 20));
+//    p->drawEllipse(curPosition, 12, 12);
 
-    p->drawEllipse(curPosition, 12, 12);
+    float direction = (curDegree / 180.0 * M_PI);
 
+//    p->fillRect(rect(), Qt::white);
+
+    QRect rect(curPosition.x() - 6,curPosition.y() - 12,12,24);
+    QPoint center = rect.center();
+//    p->save();
+    p->translate(center.x(), center.y());
+    p->rotate(-30);
+    rect = QRect(-center.x(), -center.y(), rect.width(), rect.height());
+    qDebug() << rect.x() << " , "<< rect.y();
+    qDebug() << rect.width() << " , "<< rect.height();
+    p->drawRect(rect);
+//    p->restore();
+
+//    // head point
+//    QPoint head_dir = QPoint(curPosition.x() + 6 * qCos(direction),
+//                         curPosition.y() - 6 * qSin(direction));
+
+//    // head point
+//    QPoint head = QPoint(curPosition.x() + 12 * qCos(direction),
+//                         curPosition.y() - 12 * qSin(direction));
+
+//    float direction_left = ((curDegree + 45) / 180.0 * M_PI);
+//    // left point
+//    QPoint left = QPoint(head_dir.x() + 6 * qCos(direction_left),
+//                         head_dir.y() - 6 * qSin(direction_left));
+//    float direction_right = ((curDegree - 45) / 180.0 * M_PI);
+//    // right point
+//    QPoint right = QPoint(head_dir.x() + 6 * qCos(direction_right),
+//                         head_dir.y() - 6 * qSin(direction_right));
+
+//    p->drawEllipse(head_dir, 2, 2);
+
+//    p->drawEllipse(head, 2, 2);
+//    p->drawEllipse(left, 2, 2);
+//    p->drawEllipse(right, 2, 2);
+//    p->drawEllipse(curPosition, 2, 2);
     p->end();
 }
 void Canvas::paintEvent(QPaintEvent *e)
