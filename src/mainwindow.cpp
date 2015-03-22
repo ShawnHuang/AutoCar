@@ -10,8 +10,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     Canvas *mCanvas = new Canvas();
 
-    setCentralWidget(mCanvas);
-    setWindowTitle("Fuzzy AutoCar");
+    this->setCentralWidget(mCanvas);
+    this->setWindowTitle("Fuzzy Control Autonomous Mobile");
+    this->setWindowIcon(QIcon(":/resources/automobi.ico"));
 }
 
 MainWindow::~MainWindow()

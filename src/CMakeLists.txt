@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8.11)
 
-project(helloworld)
+project(automobi)
 
 # Find includes in the build directories
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -31,8 +31,8 @@ qt5_add_resources(QRCS resources.qrc)
 
 set(CANVAS Canvas.cpp Canvas.h)
 
-# Tell CMake to create the helloworld executable
-add_executable(helloworld main.cpp mainwindow.cpp ${UI_HEADERS} ${QRCS} ${CANVAS})
+# Tell CMake to create the automobi executable
+add_executable(automobi main.cpp mainwindow.cpp ${UI_HEADERS} ${QRCS} ${CANVAS})
 
 # Add the Qt5 Widgets for linking
-target_link_libraries(helloworld Qt5::Widgets)
+target_link_libraries(automobi Qt5::Widgets)
