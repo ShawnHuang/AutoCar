@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Name=Automobi
+Comment=A fuzzy control autonomous mobile simulator
+Exec=/home/shawn/AutoCar/build/automobi
+Icon=/home/shawn/AutoCar/src/resources/automobi.ico
+Terminal=false
+Type=Application
+Categories=Development;
