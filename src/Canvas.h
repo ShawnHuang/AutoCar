@@ -23,8 +23,6 @@ protected:
     void drawPoint(QPainter *p);
     void drawCar(QPainter *p);
 
-    bool collision();
-
     void paintEvent(QPaintEvent *e);
     void mouseMoveEvent(QMouseEvent *event);
     void mousePressEvent(QMouseEvent *event);
@@ -36,7 +34,6 @@ protected:
     QPoint start;
     QPoint end;
     QPoint curPosition;
-    float curDegree;
     int offset;
     int canvasWidth;
     int canvasHeight;

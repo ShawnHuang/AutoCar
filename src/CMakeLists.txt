@@ -27,11 +27,12 @@ find_package(Qt5Widgets REQUIRED)
 qt5_wrap_ui(UI_HEADERS mainwindow.ui)
 
 # Generate rules for building source files from the resources
-# qt5_add_resources(QRCS resources.qrc)
+qt5_add_resources(QRCS resources.qrc)
 
-set(Canvas Canvas.h Canvas.cpp)
+set(CANVAS Canvas.cpp Canvas.h)
+
 # Tell CMake to create the helloworld executable
-add_executable(AutoCar main.cpp mainwindow.cpp ${UI_HEADERS} ${Canvas})
+add_executable(helloworld main.cpp mainwindow.cpp ${UI_HEADERS} ${QRCS} ${CANVAS})
 
 # Add the Qt5 Widgets for linking
-target_link_libraries(AutoCar Qt5::Widgets)
+target_link_libraries(helloworld Qt5::Widgets)
