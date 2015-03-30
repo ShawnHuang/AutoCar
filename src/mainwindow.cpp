@@ -1,27 +1,34 @@
+#include <QGraphicsView>
+#include <QKeyEvent>
+#include <QTimer>
+
+#include "AutoMobiController.h"
 #include "mainwindow.h"
-#include "ui_mainwindow.h"
 
-#include "Canvas.h"
 
-MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::MainWindow)
+MainWindow::MainWindow(QWidget *parent)
+  : QMainWindow(parent),   // initialization list
+    scene(new QGraphicsScene(this)),
+    view(new QGraphicsView( scene, this)),
+    controller(new AutoMobiController( *scene, this))
 {
-    ui->setupUi(this);
-    Canvas *mCanvas = new Canvas();
+  this->setWindowTitle("Fuzzy Control Autonomous Mobile");
+  this->setWindowIcon(QIcon(":/resources/automobi.ico"));
+  this->setCentralWidget(view);
+  this->resize(600,600);
+  
+  scene->setSceneRect( -10, -10, 55, 55);
 
-    this->setCentralWidget(mCanvas);
-    this->setWindowTitle("Fuzzy Control Autonomous Mobile");
-    this->setWindowIcon(QIcon(":/resources/automobi.ico"));
+
+  QTimer::singleShot( 0, this, SLOT(adjustViewSize()));
 }
 
 MainWindow::~MainWindow()
 {
-    delete ui;
 }
 
-void MainWindow::keyPressEvent(QKeyEvent *e)
+void MainWindow::adjustViewSize()
 {
-    // ignore keyPressEvent in parent widget
-    e->ignore();
+  view->fitInView(scene->sceneRect(), Qt::KeepAspectRatioByExpanding);
+  //view->scale(1, -1);
 }

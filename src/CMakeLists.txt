@@ -24,15 +24,17 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
 find_package(Qt5Widgets REQUIRED)
 
 # Generate code from ui files
-qt5_wrap_ui(UI_HEADERS mainwindow.ui)
+# qt5_wrap_ui(UI_HEADERS mainwindow.ui)
 
 # Generate rules for building source files from the resources
 qt5_add_resources(QRCS resources.qrc)
 
-set(CANVAS Canvas.cpp Canvas.h)
+set(AutoMobiController AutoMobiController.cpp AutoMobiController.h)
+set(Car Car.cpp Car.h)
+set(Wall Wall.cpp Wall.h)
 
-# Tell CMake to create the automobi executable
-add_executable(automobi main.cpp mainwindow.cpp ${UI_HEADERS} ${QRCS} ${CANVAS})
+# Tell CMake to create the automobi executable ${UI_HEADERS}
+add_executable(automobi main.cpp mainwindow.cpp constants.h ${QRCS} ${AutoMobiController} ${Car} ${Wall})
 
 # Add the Qt5 Widgets for linking
 target_link_libraries(automobi Qt5::Widgets)

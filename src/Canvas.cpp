@@ -97,28 +97,28 @@ void Canvas::mouseReleaseEvent(QMouseEvent *event)
 void Canvas::keyPressEvent(QKeyEvent *event)
 {
     switch (event->key()) {
-    case Qt::Key_Right :
-        if (curPosition.x() < 509) {
-            curPosition.setX(curPosition.x() + 3);
-        }
-        break ;
-    case Qt::Key_Up :
-        if (curPosition.y() > 3) {
-            curPosition.setY(curPosition.y() - 3);
-        }
-        break ;
-    case Qt::Key_Left :
-        if (curPosition.x() > 3) {
-            curPosition.setX(curPosition.x() - 3);
-        }
-        break ;
-    case Qt::Key_Down :
-        if (curPosition.y() < 509) {
-            curPosition.setY(curPosition.y() + 3);
-        }
-        break ;
-    default :
-        break ;
+      case Qt::Key_Right :
+          if (curPosition.x() < 509) {
+              curPosition.setX(curPosition.x() + 3);
+          }
+          break ;
+      case Qt::Key_Up :
+          if (curPosition.y() > 3) {
+              curPosition.setY(curPosition.y() - 3);
+          }
+          break ;
+      case Qt::Key_Left :
+          if (curPosition.x() > 3) {
+              curPosition.setX(curPosition.x() - 3);
+          }
+          break ;
+      case Qt::Key_Down :
+          if (curPosition.y() < 509) {
+              curPosition.setY(curPosition.y() + 3);
+          }
+          break ;
+      default :
+          break ;
     }
 
     QWidget::update();

@@ -2,30 +2,30 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QMouseEvent>
-#include <QEvent>
-#include <QGridLayout>
 
+class QGraphicsScene;
+class QGraphicsView;
 
-
-namespace Ui {
-class MainWindow;
-}
+class AutoMobiController;
 
 class MainWindow : public QMainWindow
 {
-    Q_OBJECT
+  Q_OBJECT
 
-public:
+  public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-protected:
-    void keyPressEvent(QKeyEvent *event);
+  protected:
 
-private:
-    Ui::MainWindow *ui;
+  private slots:
+    void adjustViewSize();
 
+  private:
+    QGraphicsScene *scene;
+    QGraphicsView *view;
+    
+    AutoMobiController *controller;
 
 };
 
