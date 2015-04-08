@@ -22,6 +22,7 @@ void Wall::paint( QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *
 
     painter->setRenderHint(QPainter::Antialiasing);
     painter->fillPath(this->shape(), QColor(80,80,80));
+    //painter->drawRect();
 
     painter->restore();
 }
@@ -33,7 +34,7 @@ QPainterPath Wall::shape() const
   //p.addEllipse(this->pos, 149, 149);
   QVector<QPointF> vect(9);
   //vect<<QPointF(-6,-6)<<QPointF(-6,22)<<QPointF(18,22)<<QPointF(18,37)<<QPointF(30,37)<<QPointF(30,10)<<QPointF(6,10)<<QPointF(6,-6)<<QPointF(-6,-6);
-  vect<<QPointF(-6,0)<<QPointF(-6,28)<<QPointF(18,28)<<QPointF(18,43)<<QPointF(30,43)<<QPointF(30,16)<<QPointF(6,16)<<QPointF(6,0)<<QPointF(-6,0);
+  vect<<QPointF(-6,0)<<QPointF(-6,28)<<QPointF(18,28)<<QPointF(18,44.9)<<QPointF(30,44.9)<<QPointF(30,16)<<QPointF(6,16)<<QPointF(6,0)<<QPointF(-6,0);
   q.addPolygon(QPolygonF(vect));
   return p-q;
 }

@@ -9,11 +9,13 @@
 
 AutoMobiController::AutoMobiController( QGraphicsScene &scene, QObject *parent)
   : QObject(parent),
-    scene(scene)
+    scene(scene),
+    x(0),
+    y(0)
 { 
   timer.start( 1000/33 ); 
   wall = new Wall();
-  car = new Car(*this);
+  car = new Car(*this, QPointF(x,y+6));
   car->setTarget(wall);
   scene.addItem(wall);
   scene.addItem(car);
@@ -57,7 +59,14 @@ bool AutoMobiController::eventFilter(QObject *object, QEvent *event)
    if (event->type() == QEvent::KeyPress) {
        this->keyPressEvent((QKeyEvent *)event);
        return true;
-   } else {
+   } 
+   else if (event->type() == QEvent::MouseButtonPress){
+       QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
+       int mx=mouseEvent->pos().x(),my=mouseEvent->pos().y();
+       this->car->setPos(QPointF(mx,my));
+       return true;
+   }
+   else {
        return QObject::eventFilter(object, event);
    } 
 }

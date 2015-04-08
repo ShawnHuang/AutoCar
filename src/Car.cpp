@@ -7,16 +7,18 @@
 #include "AutoMobiController.h"
 #include "Car.h"
 #include "Wall.h"
+#include "Fuzzy/Fuzzy.h"
 
-Car::Car(AutoMobiController &controller)
+Car::Car(AutoMobiController &controller, QPointF pos)
   : controller(controller),
-    pos(0,6),
     radius(3),
     angle(0),
     steer(0),
     speed(0.1)
 {
+  this->init_pos = pos;
   this->setPos(pos);
+  this->fuzzy = new Fuzzy();
 }
 
 QRectF Car::boundingRect() const
@@ -59,13 +61,18 @@ void Car::advance(int step)
   {
     return;
   }
-  
-  this->powerfunction();
-  this->setRotation(this->angle*(-180)/PI);
-  this->setPos(this->pos);
 
   this->detect();
   this->handleCollisions();
+
+  this->fuzzy->init(this->left, this->center, this->right);
+  float steer = this->fuzzy->getSteer();
+  //float speed = this->getSpeed();
+  
+  this->powerfunction(steer*PI/180);
+  this->setRotation(this->angle*(-180)/PI);
+  this->setPos(this->pos);
+
 }
 
 void Car::handleCollisions()
@@ -80,7 +87,7 @@ void Car::handleCollisions()
   }  
   if (check==1)
   {
-    this->pos=QPointF(0,6);
+    this->pos=this->init_pos;
     this->angle=0;
     this->steer=0;
   }
@@ -101,7 +108,7 @@ void Car::detect()
   QPointF d2 = QPointF(pos.x()+3*sin(this->angle+PI/4),pos.y()+3*cos(this->angle+PI/4));
   QPointF d3 = QPointF(pos.x()+3*sin(this->angle-PI/4),pos.y()+3*cos(this->angle-PI/4));
   //QPointF d2 = mapFromScene(d1);
-  printf("pos %f %f %f\n",this->left,this->center,this->right);
+  //printf("pos %f %f %f\n",this->left,this->center,this->right);
   //printf("hit %f %f\n",d1.rx(),d1.ry());
   for (;;)
   {
@@ -157,14 +164,14 @@ void Car::powerfunction(float fuzzy_steer,float fuzzy_speed)
   {
     this->speed=fuzzy_speed;
   }
-  if (this->angle<=-PI/2)
-  {
-    this->angle=-PI/2;
-  }
-  if (this->angle>=3*PI/2)
-  {
-    this->angle=3*PI/2;
-  }
+  //if (this->angle<=-PI/2)
+  //{
+  //  this->angle=-PI/2;
+  //}
+  //if (this->angle>=3*PI/2)
+  //{
+  //  this->angle=3*PI/2;
+  //}
   if (this->steer<=-40*PI/180)
   {
     this->steer=-40*PI/180;

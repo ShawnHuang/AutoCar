@@ -4,11 +4,12 @@
 
 class AutoMobiController;
 class Wall;
+class Fuzzy;
 
 class Car : public QGraphicsItem
 {
   public:
-    QPointF pos;
+    QPointF init_pos,pos;
     float angle;
     float steer;
     float speed;
@@ -16,7 +17,7 @@ class Car : public QGraphicsItem
     QPointF cpoint,lpoint,rpoint;
 
     
-    Car(AutoMobiController &controller);
+    Car(AutoMobiController &controller, QPointF pos);
 
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *);
@@ -35,6 +36,7 @@ class Car : public QGraphicsItem
     AutoMobiController &controller;
     int radius;
     Wall *wall;
+    Fuzzy *fuzzy;
 
     void handleCollisions();
 };

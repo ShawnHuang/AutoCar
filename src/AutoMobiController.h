@@ -30,6 +30,7 @@ class AutoMobiController : public QObject
     QGraphicsScene &scene;
     Car *car;
     Wall *wall;
+    int x,y;
 
 };
 
