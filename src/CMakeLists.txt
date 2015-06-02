@@ -18,7 +18,8 @@ set(CMAKE_AUTOMOC ON)
 #endif(NOT CMAKE_PREFIX_PATH AND NOT Qt5Widgets_DIR)
 
 # Add a compiler flag
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -std=c++11")
+set(CMAKE_PREFIX_PATH "../../../Qt/5.4/gcc_64/lib/cmake")
 
 # Find the QtWidgets library
 find_package(Qt5Widgets REQUIRED)
@@ -64,9 +65,11 @@ set(MF Fuzzy/MF/Membership_func.h
        Fuzzy/MF/Right_steer.cpp 
        Fuzzy/MF/Right_steer.h
    )
+set(GA GA/GA.cpp GA/GA.h) 
+set(PSO PSO/PSO.cpp PSO/PSO.h) 
 
 # Tell CMake to create the automobi executable ${UI_HEADERS}
-add_executable(automobi main.cpp mainwindow.cpp constants.h ${QRCS} ${AutoMobiController} ${Car} ${Wall} ${Fuzzy} ${MF})
+add_executable(automobi main.cpp mainwindow.cpp constants.h ${QRCS} ${AutoMobiController} ${Car} ${Wall} ${Fuzzy} ${MF} ${GA} ${PSO})
 
 # Add the Qt5 Widgets for linking
 target_link_libraries(automobi Qt5::Widgets)

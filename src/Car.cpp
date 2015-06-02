@@ -1,24 +1,27 @@
 #include <QPainter>
 
 #include <cmath>
-#include <stdio.h>
 
 #include "constants.h"
 #include "AutoMobiController.h"
 #include "Car.h"
 #include "Wall.h"
 #include "Fuzzy/Fuzzy.h"
+#include "PSO/PSO.h"
+#include "GA/GA.h"
 
 Car::Car(AutoMobiController &controller, QPointF pos)
   : controller(controller),
-    radius(3),
+    radius(2.3),
     angle(0),
     steer(0),
     speed(0.1)
 {
   this->init_pos = pos;
   this->setPos(pos);
-  this->fuzzy = new Fuzzy();
+  //this->fuzzy = new Fuzzy();
+  //this->ga = new GA();
+  this->pso = new PSO();
 }
 
 QRectF Car::boundingRect() const
@@ -65,8 +68,11 @@ void Car::advance(int step)
   this->detect();
   this->handleCollisions();
 
-  this->fuzzy->init(this->left, this->center, this->right);
-  float steer = this->fuzzy->getSteer();
+  //this->fuzzy->init(this->left, this->center, this->right);
+  //float steer = this->fuzzy->getSteer();
+  //float steer = this->ga->getSteer(this->left, this->center, this->right);
+  float steer = this->pso->getSteer(this->left, this->center, this->right);
+
   //float speed = this->getSpeed();
   
   this->powerfunction(steer*PI/180);

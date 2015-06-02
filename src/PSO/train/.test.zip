@@ -1,0 +1,31 @@
+<HTML lang='zh'>
+<HEAD><META HTTP-EQUIV='Content-Type' CONTENT='text/html; charset=UTF-8'>
+<TITLE>下載文件</TITLE>
+<LINK rel="icon" href="/img/d/favicon.png" type="image/png">
+<LINK id="ccStyleSheet" REL="STYLESHEET" TYPE="text/css" HREF="/ncu/style/22/2000/.45/cc45.css?1430620388926">
+<SCRIPT SRC="/jlib/jquery/jquery-2.1.1.min.js?04301813"></SCRIPT>
+<SCRIPT SRC="/js/fw.js?04301813"></SCRIPT>
+<SCRIPT SRC="/js/ccCommon.js?04301813"></SCRIPT>
+<SCRIPT>CC.cp={id:'2000'};CC.lang="zh_TW";CC.ver="04301813";</SCRIPT>
+</HEAD>
+<BODY TOPMARGIN="0" MARGINHEIGHT="0" MARGINWIDTH="0" LEFTMARGIN="0">
+
+<BR>
+<BR>
+<TABLE WIDTH="60%" ALIGN="CENTER" CELLSPACING="2" CELLPADDING="2">
+<TR>
+<TD>
+<SPAN CLASS="ccBold">
+您要下載的文件暫時無法找到。
+<p>
+您無權訪問該資源。
+</p><p>
+請稍後再試。
+</p>
+</SPAN>
+</TD>
+</TR>
+</TABLE>
+
+</BODY>
+</HTML>

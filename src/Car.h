@@ -5,11 +5,15 @@
 class AutoMobiController;
 class Wall;
 class Fuzzy;
+class GA;
+class PSO;
 
 class Car : public QGraphicsItem
 {
   public:
+    AutoMobiController &controller;
     QPointF init_pos,pos;
+    float radius;
     float angle;
     float steer;
     float speed;
@@ -33,10 +37,10 @@ class Car : public QGraphicsItem
     void advance(int step);
 
   private:
-    AutoMobiController &controller;
-    int radius;
     Wall *wall;
     Fuzzy *fuzzy;
+    GA *ga;
+    PSO *pso;
 
     void handleCollisions();
 };

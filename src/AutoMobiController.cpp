@@ -1,7 +1,7 @@
 #include <QEvent>
 #include <QKeyEvent>
 #include <QGraphicsScene>
-#include <stdio.h>
+#include <iostream>
 
 #include "AutoMobiController.h"
 #include "Car.h"
